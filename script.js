@@ -1,22 +1,33 @@
 
 const choices = document.querySelectorAll('.choice');
-const msg = document.querySelector('#msg')
+const msg = document.querySelector('#msg');
+const msg_container = document.querySelector('.msg-container');
+const userScorePara = document.querySelector('#user-score');
+const compScorePara = document.querySelector('#comp-score');
 
 let userScore = 0;
 let compScore = 0;
 
 const showWinner = (userWin, userChoice, compchoice) => {
     if(userWin){
+        userScore++;
+        userScorePara.innerText = userScore;
         console.log('Your have won');
-        msg.innerText = `Your ${userChoice} have won aginst computers ${compchoice}`
+        msg.innerText = `You Won !!! Your ${userChoice} beats computers ${compchoice}`;
+        msg_container.style.backgroundColor = 'green';
     }
     else{
-        msg.innerText = `Your ${userChoice} have lost aginst computers ${compchoice}`
+        compScore++;
+        compScorePara.innerText = compScore;
+        msg.innerText = `You lost !!! ${compchoice} beat your ${userChoice}`;
+        msg_container.style.backgroundColor = 'red';
     }
 }
 
 const drawGame = () => {
     console.log('Game is Draw');
+    msg.innerText ='The Game is Draw';
+    msg_container.style.backgroundColor = '#A6D6D6';
 }
 
 const computerChoice = () => {
@@ -78,6 +89,8 @@ choices.forEach((choice) => {
     // * Then we've initially declared userWin = 0; and with the if else condition we've compare with user and computer value 
 
     // * after that we've created showWinner() function and passed the useWin as it's parameter to determine wheather the user won or loose
+
+    // * Finally we've made our scoreboard functional showed it to our user
 
 // -----------
 
